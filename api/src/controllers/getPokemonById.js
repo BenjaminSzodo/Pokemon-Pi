@@ -5,13 +5,13 @@ const getPokemonById = (id, allPokemons) => {
         if (id.length === 36) {
             const dataPokemon = allPokemons.filter((poke) => poke.id === id);
             if (dataPokemon.length > 0) {
-                return {status : 200 , data : dataPokemon}
+                return dataPokemon
             }
         }
         if (id) {
             const apiPokemon = allPokemons.filter((poke) => poke.id === +id);
             if (apiPokemon.length > 0) {
-                return {status : 200 , data : apiPokemon}
+                return apiPokemon
             }
         }
     } catch (error) {
@@ -19,4 +19,4 @@ const getPokemonById = (id, allPokemons) => {
     }
 }
 
-module.exports = { getPokemonById}
+module.exports = { getPokemonById }

@@ -15,14 +15,14 @@ const router = Router();
 
 router.get('/pokemons',async (req,res)=>{
     try {
-        const getPokemons = await getAllPokemons(req,res);
+        const getPokemons = await getAllPokemons();
         res.status(200).json(getPokemons);
     } catch (error) {
         res.status(500).json(error.message);
     }
 });
 
-router.get('/pokemons/id/:id', async (req,res) => {
+router.get('/pokemons/:id', async (req,res) => {
     const {id} = req.params;
     const allPokemons = await getAllPokemons()
     const result = getPokemonById(id,allPokemons)
@@ -33,7 +33,7 @@ router.get('/pokemons/id/:id', async (req,res) => {
     }
 });
 
-router.get('/pokemons/pokename', async(req,res) => {
+router.get('/pokemons/name', async(req,res) => {
     const {name} = req.query;
     try {
         if (name) {

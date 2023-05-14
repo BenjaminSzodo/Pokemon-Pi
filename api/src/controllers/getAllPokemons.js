@@ -20,13 +20,13 @@ const objPokimon = (poke) => { // Con la informacion de los pokemons traída en 
     const pokemon = {
         id: poke.id,
         name: poke.name,
-        life: poke.stats[0].base_stat,
+        hp: poke.stats[0].base_stat,
         attack: poke.stats[1].base_stat,
         defense: poke.stats[2].base_stat,
         speed: poke.stats[5].base_stat,
         height: poke.height,
         weight: poke.weight,
-        sprite: poke.sprites.other.dream_world.front_default,
+        image: poke.sprites.other.dream_world.front_default,
         types: poke.types.length < 2 ? [poke.types[0].type.name] : [poke.types[0].type.name, poke.types[1].type.name],
     };
     return pokemon;
