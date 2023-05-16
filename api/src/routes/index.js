@@ -4,7 +4,7 @@ const { Router } = require('express');
 const { getAllPokemons } = require("../controllers/getAllPokemons");
 const { getPokemonById } = require('../controllers/getPokemonById');
 const { postPokemon } = require('../controllers/postPokemon');
-const { getPokemonsByName } = require('../controllers/getPokemonsByName');
+const { getPokemonByName } = require('../controllers/getPokemonsByName');
 const {getPokemonsType} = require('../controllers/getPokemonsType')
 
 
@@ -33,18 +33,17 @@ router.get('/pokemons/:id', async (req,res) => {
     }
 });
 
-router.get('/pokemons/name', async(req,res) => {
-    const {name} = req.query;
-    try {
-        if (name) {
-            const pokeName = await getPokemonsByName(name);
-            if (pokeName.length > 0) {
-                return res.status(200).json(pokeName)
-            }
+router.get("/pokename", async (req, res) => {
+    const { name } = req.query;
+    if (name) {
+        console.log(name);
+        const pokemonName = await getPokemonByName(name);
+        if (pokemonName.length > 0) {
+            return res.status(200).json(pokemonName);
         }
-    } catch (error) {
-        res.status(500).send(error.message)
+        return res.status(404).send("No se encontraron resultados");
     }
+    return res.status(400).send("Se debe proporcionar un nombre");
 })
 
 router.post('/pokemons/pokeCreate', async(req,res) => {
@@ -57,7 +56,7 @@ router.post('/pokemons/pokeCreate', async(req,res) => {
         res.status(500).send(error.message);
     }
 });
-router.get('/pokemons/poketypes', getPokemonsType)
+router.get('/poketypes', getPokemonsType)
 
 module.exports = router;
 

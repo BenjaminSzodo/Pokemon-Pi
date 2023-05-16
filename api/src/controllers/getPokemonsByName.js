@@ -1,22 +1,17 @@
-const { getAllPokemons } = require("../controllers/getAllPokemons");
+const {getAllPokemons} = require('./getAllPokemons')
 
-const getPokemonsByName = async (name) => {
-  try {
-    let pokeAll = await getAllPokemons();
-    if (name) {
-      let pokeName = pokeAll.filter((poke) =>
-        poke.name.toLowerCase().includes(name.toLowerCase())
-      );
-      if (pokeName.length > 0) {
-        return pokeName;
-      }
+const getPokemonByName = async (name) => {
+  let pokeTotal = await getAllPokemons();
+  if (name) {
+    console.log(name);
+    let pokemonName = pokeTotal.filter((p) =>
+      p.name.toLowerCase().includes(name.toLowerCase())
+    );
+    if (pokemonName.length > 0) {
+      return pokemonName;
     }
-
-    return null;
-    
-  } catch (error) {
-    throw Error(error.message);
   }
+  return null;
 };
 
-module.exports = { getPokemonsByName };
+module.exports = { getPokemonByName };
