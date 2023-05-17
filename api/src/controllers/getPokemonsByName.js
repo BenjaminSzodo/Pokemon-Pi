@@ -1,4 +1,4 @@
-const {getAllPokemons} = require('./getAllPokemons')
+const { getAllPokemons } = require("../controllers/getAllPokemons");
 
 const getPokemonByName = async (name) => {
   let pokeTotal = await getAllPokemons();

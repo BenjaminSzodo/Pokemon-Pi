@@ -1,6 +1,9 @@
 
 export const ALL_POKEMONS = 'ALL_POKEMONS';
+export const CLEAN_ALL_POKEMONS = 'CLEAN_ALL_POKEMONS';
 export const POKEMON_BY_ID = 'POKEMON_BY_ID';
 export const CLEAN_DETAIL = 'CLEAN_DETAIL';
 export const GET_POKEMON_BY_NAME = 'GET_POKEMON_BY_NAME';
 export const CLEAN_POKEMON_NAME = 'CLEAN_POKEMON_NAME';
+export const ORDER_BY_NAME = 'ORDER_BY_NAME';
+export const ORDER_BY_ATTK = 'ORDER_BY_ATTK';
