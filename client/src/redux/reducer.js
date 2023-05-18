@@ -1,4 +1,4 @@
-import { ALL_POKEMONS,CLEAN_ALL_TYPES, ALL_TYPES , POKEMON_BY_ID , CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME, ORDER_BY_NAME, ORDER_BY_ATTK, CLEAN_ALL_POKEMONS, FILTER_TYPE} from "./actionsType";
+import { ALL_POKEMONS,CLEAN_ALL_TYPES, ALL_TYPES , POKEMON_BY_ID , CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME, ORDER_BY_NAME, ORDER_BY_ATTK, CLEAN_ALL_POKEMONS, FILTER_TYPE, POST_POKEMON} from "./actionsType";
 
 const initialState = {
     allPokemons: [], // Guarda aquí los Pokémon originales sin filtrar
@@ -64,22 +64,29 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 filteredPokemons: orderName,
             }
-        case ORDER_BY_ATTK:
-            const allPokemonsCopy2 = [...state.filteredPokemons]
-            const orderAttk = action.payload === 'A' ? allPokemonsCopy2.sort((a,b)=> a.attack - b.attack) : allPokemonsCopy2.sort((a,b)=> a.attack - b.attack)
-            return {
-                ...state,
-                filteredPokemons: orderAttk,
-            }
+            case ORDER_BY_ATTK:
+                const allPokemonsCopy2 = [...state.filteredPokemons];
+                const orderAttk =
+                  action.payload === "A"
+                    ? allPokemonsCopy2.sort((a, b) => a.attack - b.attack)
+                    : allPokemonsCopy2.sort((a, b) => b.attack - a.attack);
+                return {
+                  ...state,
+                  filteredPokemons: orderAttk,
+                };
             case FILTER_TYPE:
                 const filteredPokemons = action.payload === 'allPokemons'
-                  ? state.allPokemons // Si el filtro es "ALL", muestra todos los Pokémon
+                  ? state.allPokemons // Si el filtro es "allPokemons", muestra todos los Pokémon
                   : state.allPokemons.filter(element => element.types?.includes(action.payload));
               
                 return {
                   ...state,
                   filteredPokemons: filteredPokemons,
                 };
+            case POST_POKEMON:
+                return {
+                    ...state,
+                }
         default:
             return {...state}
     }

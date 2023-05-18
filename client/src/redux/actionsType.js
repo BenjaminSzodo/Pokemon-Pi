@@ -10,4 +10,5 @@ export const CLEAN_POKEMON_NAME = 'CLEAN_POKEMON_NAME';
 export const ORDER_BY_NAME = 'ORDER_BY_NAME';
 export const ORDER_BY_ATTK = 'ORDER_BY_ATTK';
 export const FILTER_TYPE = 'FILTER_TYPE';
-export const FILTER_DB = 'FILTER_DB';
+export const FILTER_DB_API = 'FILTER_DB_API';
+export const POST_POKEMON = 'POST_POKEMON';

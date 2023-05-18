@@ -1,4 +1,4 @@
-import { ALL_POKEMONS , ALL_TYPES, CLEAN_ALL_TYPES ,CLEAN_ALL_POKEMONS, POKEMON_BY_ID, CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME , ORDER_BY_NAME, ORDER_BY_ATTK, FILTER_TYPE, FILTER_DB} from "./actionsType";
+import { ALL_POKEMONS , ALL_TYPES, CLEAN_ALL_TYPES ,CLEAN_ALL_POKEMONS, POKEMON_BY_ID, CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME , ORDER_BY_NAME, ORDER_BY_ATTK, FILTER_TYPE, FILTER_DB_API, POST_POKEMON} from "./actionsType";
 import axios from "axios";
 
 
@@ -127,9 +127,17 @@ export const filterType = (payload) => {
     }
 }
 
-export const filterDb = (payload) => {
+export const filterDbApi = (payload) => {
     return {
-        type: FILTER_DB,
+        type: FILTER_DB_API,
         payload,
+    }
+}
+
+export const postPokemon = (payload) => {
+    return async() => {
+        const pokemonPost = await axios.post('http://localhost:3001/pokemons/pokeCreate',payload);
+        console.log(pokemonPost);
+        return pokemonPost;
     }
 }

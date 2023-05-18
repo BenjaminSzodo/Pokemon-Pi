@@ -22,8 +22,8 @@ const Order = ({setOrder, setCurrentPage}) => {
                 <option value="D">Descendente</option>
             </select>
             <select onChange={handleOrderAttk}>
-                <option value="A">Fuerte</option>
-                <option value="D">Debil</option>
+                <option value="D">Fuerte</option>
+                <option value="A">Debil</option>
             </select>
         </div>
       )

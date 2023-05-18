@@ -50,6 +50,7 @@ router.post('/pokemons/pokeCreate', async(req,res) => {
     const {name, id, image, hp, attack, speed, defense, weight, height} = req.body;
     const pokeCreate = {name, id, image, hp, attack, speed, defense, weight, height};
     try {
+        
         const pokemon = await postPokemon(pokeCreate);
         res.status(200).json(pokemon);
     } catch (error) {
