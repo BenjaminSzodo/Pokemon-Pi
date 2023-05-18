@@ -1,4 +1,4 @@
-import { ALL_POKEMONS ,CLEAN_ALL_POKEMONS, POKEMON_BY_ID, CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME , ORDER_BY_NAME, ORDER_BY_ATTK} from "./actionsType";
+import { ALL_POKEMONS , ALL_TYPES, CLEAN_ALL_TYPES ,CLEAN_ALL_POKEMONS, POKEMON_BY_ID, CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME , ORDER_BY_NAME, ORDER_BY_ATTK, FILTER_TYPE, FILTER_DB} from "./actionsType";
 import axios from "axios";
 
 
@@ -17,14 +17,41 @@ export const getAllPokemons = () => {
         }
     }
 
-} 
+}
 
-export const cleanAllpokemons = (dispatch) => {
-        return dispatch({
+
+
+export const cleanAllpokemons = () => {
+        return {
             type: CLEAN_ALL_POKEMONS,
             payload: [],
-        })
+        }
 };
+
+
+
+export const getAllTypes = () => {
+    return async(dispatch) => {
+        try {
+            const response = await axios.get('http://localhost:3001/poketypes');
+            const types = response.data;
+            return dispatch({
+                type: ALL_TYPES,
+                payload: types,
+            })
+        } catch (error) {
+            throw Error({error : error.message});
+        }
+    }
+}
+
+export const cleanAllTypes = () => {
+    return {
+        type: CLEAN_ALL_TYPES,
+        payload: [],
+    }
+};
+
 
 export const getPokemonById = (id,dispatch) => {
 
@@ -91,4 +118,18 @@ export const orderByAttk = (payload) => {
         type: ORDER_BY_ATTK,
         payload 
     } 
+}
+
+export const filterType = (payload) => {
+    return {
+        type: FILTER_TYPE,
+        payload,
+    }
+}
+
+export const filterDb = (payload) => {
+    return {
+        type: FILTER_DB,
+        payload,
+    }
 }

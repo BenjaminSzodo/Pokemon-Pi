@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getPokemonByName, cleanPokemonByName } from "../../redux/actions";
+import { getPokemonByName } from "../../redux/actions";
 
 export default function SearchBar() {
     const dispatch = useDispatch();

@@ -5,11 +5,12 @@ import { getAllPokemons, cleanAllpokemons } from "../../redux/actions";
 import Card from "../Card/Card";
 import Pagination from "../Pagination/Pagination";
 import Order from "../Order/Order";
-import SearchBar from "../SearchBar/SearchBar";
+import Filter from "../Filer/Filter";
 
 const Cards = () => {
   const dispatch = useDispatch();
   const pokemons = useSelector((state) => state.allPokemons);
+  const filteredPokemons = useSelector((state) => state.filteredPokemons);
 
   //Paginado acá abajo
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,10 +37,11 @@ const Cards = () => {
   return (
     <div>
       <div>
+        <Filter setCurrentPage={setCurrentPage} setOrder={setOrder} />
         <Order setCurrentPage={setCurrentPage} setOrder={setOrder} />
         <button onClick={handleClick}>Limpiar filtros</button>
         <div>
-          {pokemons
+          {filteredPokemons
             ?.slice(indexOfFirstPokemon, indexOfLastPokemon)
             .map((pokemon) => (
               <Card
