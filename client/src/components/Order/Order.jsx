@@ -22,12 +22,12 @@ const Order = ({ setOrder, setCurrentPage }) => {
   return (
     <div className={styles.order}>
       <select className={styles.select} onChange={handleOrderName}>
-        <option>Default</option>
+        <option value="default">Default</option>
         <option value="A">Ascendente</option>
         <option value="D">Descendente</option>
       </select>
       <select className={styles.select} onChange={handleOrderAttk}>
-        <option>Default</option>
+        <option value="default">Default</option>
         <option value="D">Fuerte</option>
         <option value="A">Debil</option>
       </select>

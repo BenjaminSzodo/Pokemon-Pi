@@ -4,6 +4,7 @@ import { filterType, filterDbApi } from "../../redux/actions";
 import { getAllTypes } from "../../redux/actions";
 import style from './Filter.module.css'
 
+
 const Filter = ({ setCurrentPage, setOrder }) => {
   const dispatch = useDispatch();
   const allTypes = useSelector((state) => state.allTypes);
@@ -25,11 +26,12 @@ const Filter = ({ setCurrentPage, setOrder }) => {
     setOrder(event.target.value);
   };
 
+
   return (
     <div>
       <label>Types: </label>
       <select onChange={handleFilterType} className={style.select}>
-        <option>Select one</option>
+        <option value='allPokemons'>Select one</option>
         {allTypes?.map((element) => {
           return (
             <option key={element.id} value={element.name}>
@@ -40,7 +42,7 @@ const Filter = ({ setCurrentPage, setOrder }) => {
       </select>
       <label>Created - Api</label>
       <select onChange={(event) => handleFilterFrom(event)} className={style.select}>
-        <option value="all">ALL</option>
+        <option value="All">ALL</option>
         <option value="api">API</option>
         <option value="created">CREATED</option>
       </select>

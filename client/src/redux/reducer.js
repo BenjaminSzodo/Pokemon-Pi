@@ -51,20 +51,35 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 pokemonByName: [],
             }
-        case ORDER_BY_NAME:
-            const allPokemonsCopy = [...state.filteredPokemons]
-            const orderName = action.payload === 'A' ? 
-            allPokemonsCopy.sort((a, b) => {
-                return a.name.toLowerCase().localeCompare(b.name.toLowerCase())
-            }) :
-            allPokemonsCopy.sort((a, b) => {
-                return b.name.toLowerCase().localeCompare(a.name.toLowerCase())
-            })
-            return{
-                ...state,
-                filteredPokemons: orderName,
-            }
+            case ORDER_BY_NAME:
+                if (action.payload === "default") {
+                  return {
+                    ...state,
+                    filteredPokemons: state.allPokemons, // Utiliza el estado original de todos los pokemons
+                  };
+                }
+              
+                const allPokemonsCopy = [...state.filteredPokemons];
+                const orderName =
+                  action.payload === "A"
+                    ? allPokemonsCopy.sort((a, b) =>
+                        a.name.toLowerCase().localeCompare(b.name.toLowerCase())
+                      )
+                    : allPokemonsCopy.sort((a, b) =>
+                        b.name.toLowerCase().localeCompare(a.name.toLowerCase())
+                      );
+              
+                return {
+                  ...state,
+                  filteredPokemons: orderName,
+                };
             case ORDER_BY_ATTK:
+                if (action.payload === "default") {
+                    return {
+                      ...state,
+                      filteredPokemons: state.allPokemons, // Utiliza el estado original de todos los pokemons
+                    };
+                  }
                 const allPokemonsCopy2 = [...state.filteredPokemons];
                 const orderAttk =
                   action.payload === "A"
@@ -88,18 +103,14 @@ const reducer = (state = initialState, action) => {
                     ...state,
                 }
             case FILTER_DB_API:
-                const allPokemonsCopy3 = [...state.filteredPokemons];
-                let Filtered;
-                if (action.payload === 'created') {
-                    Filtered = allPokemonsCopy3.filter(event => event.createdInBd);
-                } else if (action.payload === 'api') {
-                    Filtered = allPokemonsCopy3.filter(event => !event.createdInBd);
-                } else {
-                    Filtered = allPokemonsCopy3;
-                }
+                state.filteredPokemons = state.allPokemons
+                const allPokemonsCopy3 = state.allPokemons
+                const filterPokemon = action.payload === 'created'
+                ? allPokemonsCopy3.filter((element) => typeof element.id === "string")
+                : allPokemonsCopy3.filter((element) => typeof element.id === "number");
                 return {
                     ...state,
-                    filteredPokemons: Filtered,
+                    filteredPokemons: action.payload === "All" ? state.allPokemons : filterPokemon,
                 };
         default:
             return {...state}
