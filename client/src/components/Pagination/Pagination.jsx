@@ -1,5 +1,4 @@
-
-
+import style from './Pagination.module.css';
 
 const Pagination = ({ pokemonsPerPage, allPokemons, currentPage, pagination }) => {
   const pageNumber = Math.ceil(allPokemons / pokemonsPerPage);
@@ -17,17 +16,17 @@ const Pagination = ({ pokemonsPerPage, allPokemons, currentPage, pagination }) =
   };
 
   return (
-    <nav>
-      <ul className="pagination">
-        <button className="pagination-item" onClick={handlePrevious}>
+    <div className={style.container}>
+      <nav>
+        <button className={style.button} onClick={handlePrevious}>
           &laquo; Anterior
         </button>
-        <button className="pagination-item active">{currentPage}</button>
-        <button className="pagination-item" onClick={handleNext}>
+        <p className={style.pageNumber}>{currentPage}</p>
+        <button className={style.button} onClick={handleNext}>
           Siguiente &raquo;
         </button>
-      </ul>
-    </nav>
+      </nav>
+    </div>
   );
 };
 

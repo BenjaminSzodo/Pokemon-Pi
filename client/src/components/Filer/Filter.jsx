@@ -1,46 +1,51 @@
-import { useState } from "react";
-import {useDispatch, useSelector} from 'react-redux';
-import { filterType,cleanAllTypes } from "../../redux/actions";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { filterType, filterDbApi } from "../../redux/actions";
+import { getAllTypes } from "../../redux/actions";
+import style from './Filter.module.css'
 
-const Filter = ({setCurrentPage,setOrder}) => {
-    const dispatch = useDispatch();
-    const allTypesPokemon = useSelector(state => state.filteredPokemons)
-    console.log(allTypesPokemon);
+const Filter = ({ setCurrentPage, setOrder }) => {
+  const dispatch = useDispatch();
+  const allTypes = useSelector((state) => state.allTypes);
+ 
 
-    const handleFilterType = (event) => {
+  const handleFilterType = (event) => {
+    dispatch(filterType(event.target.value));
+    setCurrentPage(1);
+  };
 
-        dispatch(filterType(event.target.value)); 
-        setCurrentPage(1);
-    };
+  useEffect(() => {
+    dispatch(getAllTypes());
+  }, []);
 
-    return (
-        <div>
-          <label>Types: </label>
-          <select onChange={(event) => { handleFilterType(event) }}>
-          <option value="allPokemons">ALL</option>
-          <option value="fighting"> Lucha</option>
-            <option value="poison">Veneno</option>
-            <option value="rock">Roca</option>
-            <option value="ghost">Fantasma</option>
-            <option value="fire">Fuego</option>
-            <option value="grass">Pasto</option>
-            <option value="psychic">Psitico</option>
-            <option value="dragon">Dragon</option>
-            <option value="fairy">Hada</option>
-            <option value="shadow">Sombra</option>
-            <option value="normal">Normal</option>
-            <option value="flying">Volador</option>
-            <option value="ground">Tierra</option>
-            <option value="bug">Bicho</option>
-            <option value="steel">Metal</option>
-            <option value="water">Agua</option>
-            <option value="electric">Electrico</option>
-            <option value="ice">Hielo</option>
-            <option value="dark">Oscuro</option>
-            <option value="unknow">Desconocido</option>
-          </select>
-        </div>
-      );
-    };
+  const handleFilterFrom = (event) => {
+    event.preventDefault();
+    dispatch(filterDbApi(event.target.value));
+    setCurrentPage(1);
+    setOrder(event.target.value);
+  };
+
+  return (
+    <div>
+      <label>Types: </label>
+      <select onChange={handleFilterType} className={style.select}>
+        <option>Select one</option>
+        {allTypes?.map((element) => {
+          return (
+            <option key={element.id} value={element.name}>
+              {element.name}
+            </option>
+          );
+        })}
+      </select>
+      <label>Created - Api</label>
+      <select onChange={(event) => handleFilterFrom(event)} className={style.select}>
+        <option value="all">ALL</option>
+        <option value="api">API</option>
+        <option value="created">CREATED</option>
+      </select>
+    </div>
+  );
+};
 
 export default Filter;

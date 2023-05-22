@@ -1,0 +1,31 @@
+.nav {
+    background-color: rgb(26, 90, 154); /* Color de fondo verde agua */
+    display: flex;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .logo {
+    width: 200px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    margin-right: 10px; /* Espaciado derecho para separar la imagen del contenido */
+  }
+  
+  .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .button {
+    width: 130px; /* Ajusta el ancho del botón según tus necesidades */
+    height: 25px; /* Ajusta la altura del botón según tus necesidades */
+    background-color: #ffcc00; /* Color de fondo del botón */
+    color: #ffffff; /* Color de texto del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo al pasar el cursor */
+  }
+  
+  .button:hover {
+    background-color: #ffdd33; /* Color de fondo del botón al pasar el cursor */
+  }
+  

@@ -1,4 +1,4 @@
-import { ALL_POKEMONS,CLEAN_ALL_TYPES, ALL_TYPES , POKEMON_BY_ID , CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME, ORDER_BY_NAME, ORDER_BY_ATTK, CLEAN_ALL_POKEMONS, FILTER_TYPE, POST_POKEMON} from "./actionsType";
+import { ALL_POKEMONS,CLEAN_ALL_TYPES, ALL_TYPES , POKEMON_BY_ID , CLEAN_DETAIL, GET_POKEMON_BY_NAME, CLEAN_POKEMON_NAME, ORDER_BY_NAME, ORDER_BY_ATTK, CLEAN_ALL_POKEMONS, FILTER_TYPE, POST_POKEMON, FILTER_DB_API} from "./actionsType";
 
 const initialState = {
     allPokemons: [], // Guarda aquí los Pokémon originales sin filtrar
@@ -87,6 +87,20 @@ const reducer = (state = initialState, action) => {
                 return {
                     ...state,
                 }
+            case FILTER_DB_API:
+                const allPokemonsCopy3 = [...state.filteredPokemons];
+                let Filtered;
+                if (action.payload === 'created') {
+                    Filtered = allPokemonsCopy3.filter(event => event.createdInBd);
+                } else if (action.payload === 'api') {
+                    Filtered = allPokemonsCopy3.filter(event => !event.createdInBd);
+                } else {
+                    Filtered = allPokemonsCopy3;
+                }
+                return {
+                    ...state,
+                    filteredPokemons: Filtered,
+                };
         default:
             return {...state}
     }

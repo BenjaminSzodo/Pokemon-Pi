@@ -1,0 +1,31 @@
+.filtersContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.center {
+  margin: 0 10px;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  align-items: center;
+}
+
+.button {
+  width: 130px;
+  height: 25px;
+  background-color: #ffcc00;
+  color: #000000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ffdd33;
+}

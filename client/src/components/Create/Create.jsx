@@ -1,14 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllTypes } from "../../redux/actions";
-import { postPokemon } from "../../redux/actions";
+import { getAllTypes, postPokemon } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import validations from "../validations";
+import style from './Create.module.css'
+import image from '../Images/pokeball.png'
 
 const Create = () => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({});
-
+  const allTypes = useSelector((state) => state.allTypes);
   const [pokemonData, setPokemonData] = useState({
     name: "",
     image: "",
@@ -20,6 +21,10 @@ const Create = () => {
     weight: "",
     types: [],
   });
+  console.log(pokemonData);
+  useEffect(() => {
+    dispatch(getAllTypes());
+  }, []);
 
   const handleChange = (event) => {
     setPokemonData({
@@ -28,24 +33,24 @@ const Create = () => {
     });
   };
 
-  const handleBlur = (event) => {    //Esto asegura que las validaciones se realicen cuando el usuario haya terminado de ingresar los datos en ese campo en particular.
+  const handleBlur = (event) => {
     const { name, value } = event.target;
     const fieldErrors = validations({ ...pokemonData, [name]: value });
     setErrors({ ...errors, [name]: fieldErrors[name] });
   };
 
-  const handleDelete = (event) => {
+  const handleDelete = (type) => {
     setPokemonData({
-        ...pokemonData,
-        types: pokemonData.types.filter(type => type !== event)
-    })
-}
+      ...pokemonData,
+      types: pokemonData.types.filter((t) => t !== type),
+    });
+  };
 
-  const handleSelect = (event) => { 
+  const handleSelect = (event) => {
     if (pokemonData.types.length < 2) {
       setPokemonData({
         ...pokemonData,
-        types: [...pokemonData.types, event.target.value],
+        types: [...pokemonData.types, event.target.value], // Agrega el nuevo tipo al array
       });
     } else {
       alert("Dos tipos como máximo");
@@ -71,12 +76,14 @@ const Create = () => {
 
   return (
     <div>
-      <button>
-        <Link to={"/homeSpa"}>Home</Link>
-      </button>
+      <div className={style.background}>
       <div>
-        <h1>Creador de Pokémones</h1>
-        <div>
+        <div className={style.container}>      
+        <Link to={"/homeSpa"}>
+          <button className={style.button} >Home</button>
+        </Link>
+          <img src={image} alt="" className={style.image}/>
+          <h1>Creador de Pokémones</h1>
           <form onSubmit={handleSubmit}>
             <div>
               <label>Name:</label>
@@ -179,42 +186,31 @@ const Create = () => {
 
             <div>
               <select onChange={handleSelect}>
-          <option value="fighting"> Lucha</option>
-            <option value="poison">Veneno</option>
-            <option value="rock">Roca</option>
-            <option value="ghost">Fantasma</option>
-            <option value="fire">Fuego</option>
-            <option value="grass">Pasto</option>
-            <option value="psychic">Psitico</option>
-            <option value="dragon">Dragon</option>
-            <option value="fairy">Hada</option>
-            <option value="shadow">Sombra</option>
-            <option value="normal">Normal</option>
-            <option value="flying">Volador</option>
-            <option value="ground">Tierra</option>
-            <option value="bug">Bicho</option>
-            <option value="steel">Metal</option>
-            <option value="water">Agua</option>
-            <option value="electric">Electrico</option>
-            <option value="ice">Hielo</option>
-            <option value="dark">Oscuro</option>
-            <option value="unknow">Desconocido</option>
+              <option>Select one</option>
+              {
+                            allTypes?.map(element => {
+                                return (
+                                    <option key={element.id} value={element.name}>{element.name}</option>
+                                )
+                            })
+                        }
               </select>
             </div>
             {
-                                pokemonData.types.map(element => {
+                                pokemonData.types.map(element => { //muestra que types han sido escogidos
                                     return (
                                         <div key={element}>
                                             <p >{element}</p>
                                             <button onClick={() => {handleDelete(element)}}>x</button>
                                         </div>
                                     )
-                                }) //para poder ver que fui seleccionando
+                                })
                             }
 
-            <button type="submit">{pokemonData.name} Go!</button>
+            <button type="submit" className={style.buttonEnd}>{pokemonData.name} Go!</button>
           </form>
         </div>
+      </div>
       </div>
     </div>
   );

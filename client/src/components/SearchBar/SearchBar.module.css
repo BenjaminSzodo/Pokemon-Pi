@@ -1,0 +1,12 @@
+.button {
+    width: 130px; /* Ajusta el ancho del botón según tus necesidades */
+    height: 25px; /* Ajusta la altura del botón según tus necesidades */
+    background-color: #ffcc00; /* Color de fondo del botón */
+    color: #000000; /* Color de texto del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo al pasar el cursor */
+  }
+  
+  .button:hover {
+    background-color: #ffdd33; /* Color de fondo del botón al pasar el cursor */
+  }

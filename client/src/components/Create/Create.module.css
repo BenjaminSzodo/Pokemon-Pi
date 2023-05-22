@@ -1,0 +1,62 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(145, 194, 227, 0.8);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    width: 500px;
+    margin: 40px auto 0;
+  }
+
+  .image {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+  }
+
+  .background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url("../Images/cuales.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+  }
+
+  .button {
+    margin-top: 20px;
+    background-color: rgb(41, 35, 140);
+    color: #ffffff;
+    cursor: pointer;
+    width: 130px;
+    height: 25px;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: rgb(85, 82, 145);
+  }
+
+  .buttonEnd {
+    margin-top: 20px;
+    background-color: rgb(140, 35, 35);
+    color: #ffffff;
+    cursor: pointer;
+    width: auto;
+    height: 25px;
+    border: none;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, width 0.3s ease; /* Agrega la transición de ancho */
+  }
+  
+  .buttonEnd:hover {
+    background-color: rgb(145, 82, 82);
+  }

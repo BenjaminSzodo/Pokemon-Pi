@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .pageNumber {
+    margin-right: 10px; /* Agrega un margen derecho al número de página */
+  }
+  
+  .button {
+    width: 130px;
+    height: 25px;
+    background-color: #ffcc00;
+    color: #000000;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .button:hover {
+    background-color: #ffdd33;
+  }
+  

@@ -1,0 +1,11 @@
+.select {
+    width: 130px; /* Ajusta el ancho del select según tus necesidades */
+    height: 20px; /* Ajusta la altura del select según tus necesidades */
+    background-color: #ffcc00; /* Color de fondo del select */
+    color: #000000; /* Color de texto del select (negro) */
+    padding: 0 5px; /* Añade un espacio interno para el texto */
+    font-size: 14px; /* Tamaño de fuente del select */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el select */
+    transition: background-color 0.3s ease; /* Transición suave del color de fondo al pasar el cursor */
+  }
+  

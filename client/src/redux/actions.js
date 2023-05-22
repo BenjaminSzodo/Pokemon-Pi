@@ -35,6 +35,7 @@ export const getAllTypes = () => {
         try {
             const response = await axios.get('http://localhost:3001/poketypes');
             const types = response.data;
+            console.log(types);
             return dispatch({
                 type: ALL_TYPES,
                 payload: types,

@@ -36,19 +36,21 @@ router.get('/pokemons/:id', async (req,res) => {
 router.get("/pokename", async (req, res) => {
     const { name } = req.query;
     if (name) {
-        console.log(name);
-        const pokemonName = await getPokemonByName(name);
-        if (pokemonName.length > 0) {
-            return res.status(200).json(pokemonName);
-        }
+      console.log(name);
+      const pokemonName = await getPokemonByName(name);
+      if (pokemonName === null) {
         return res.status(404).send("No se encontraron resultados");
+      }
+      if (pokemonName.length > 0) {
+        return res.status(200).json(pokemonName);
+      }
     }
     return res.status(400).send("Se debe proporcionar un nombre");
-})
+  });
 
 router.post('/pokemons/pokeCreate', async(req,res) => {
-    const {name, id, image, hp, attack, speed, defense, weight, height} = req.body;
-    const pokeCreate = {name, id, image, hp, attack, speed, defense, weight, height};
+    const {name, id, image, hp, attack, speed, defense, weight, height,types} = req.body;
+    const pokeCreate = {name, id, image, hp, attack, speed, defense, weight, height, types};
     try {
         
         const pokemon = await postPokemon(pokeCreate);

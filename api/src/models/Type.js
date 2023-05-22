@@ -13,8 +13,13 @@ module.exports = (sequelize) => {
     name: {
         type: DataTypes.STRING(35),
         allowNull: false,
+    },
+    createdInBd: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
     }
   },{
-    timestamps: false
+    timestamps: false,
   });
 };
