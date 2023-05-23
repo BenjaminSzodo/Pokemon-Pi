@@ -48,7 +48,7 @@ router.get("/pokename", async (req, res) => {
     return res.status(400).send("Se debe proporcionar un nombre");
   });
 
-router.post('/pokemons/pokeCreate', async(req,res) => {
+  router.post('/pokemons/pokeCreate', async(req,res) => {
     const {name, id, image, hp, attack, speed, defense, weight, height,types} = req.body;
     const pokeCreate = {name, id, image, hp, attack, speed, defense, weight, height, types};
     try {

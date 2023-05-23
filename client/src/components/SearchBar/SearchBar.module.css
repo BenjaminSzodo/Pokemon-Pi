@@ -10,3 +10,23 @@
   .button:hover {
     background-color: #ffdd33; /* Color de fondo del botón al pasar el cursor */
   }
+  .error-message {
+    color: #ffcc00;
+    font-size: 14px;
+    margin-top: 10px; /* Ajusta el margen superior según sea necesario */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Aplica sombreado paralelo a las letras del error */
+    position: absolute;
+    bottom: -30px; /* Ubica el mensaje de error debajo de la barra de búsqueda */
+  }
+
+  .search-bar {
+    margin-bottom: 30px; /* Agrega espacio inferior para el mensaje de error */
+    position: relative;
+  }
+
+  .container {
+    position: relative;
+  }
+  
+
+  

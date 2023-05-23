@@ -59,8 +59,26 @@ const Create = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(postPokemon(pokemonData));
+    
+    // Convierte el array de tipos en una cadena separada por comas
+    const typesString = pokemonData.types.join(",");
+
+    const fieldErrors = validations(pokemonData);
+    if (Object.keys(fieldErrors).length > 0) {
+      alert("Complete los campos requeridos");
+      setErrors(fieldErrors);
+      return;
+    }
+  
+    const dataToSend = {
+      ...pokemonData,
+      types: typesString,
+    };
+  
+    dispatch(postPokemon(dataToSend));
+  
     alert("El Pokémon " + pokemonData.name + " ha sido creado");
+  
     setPokemonData({
       name: "",
       image: "",
@@ -73,7 +91,8 @@ const Create = () => {
       types: [],
     });
   };
-
+  
+  
   return (
     <div>
       <div className={style.background}>
@@ -93,6 +112,7 @@ const Create = () => {
                 name="name"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                required
               />
               {errors.name && <p>{errors.name}</p>}
             </div>
@@ -105,6 +125,7 @@ const Create = () => {
                 name="hp"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                required
               />
               {errors.hp && <p>{errors.hp}</p>}
             </div>
@@ -117,6 +138,7 @@ const Create = () => {
                 name="attack"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                required
               />
               {errors.attack && <p>{errors.attack}</p>}
             </div>
@@ -129,6 +151,7 @@ const Create = () => {
                 name="defense"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                required
               />
               {errors.defense && <p>{errors.defense}</p>}
             </div>
@@ -141,6 +164,7 @@ const Create = () => {
                 name="speed"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                required
               />
               {errors.speed && <p>{errors.speed}</p>}
             </div>
@@ -153,6 +177,7 @@ const Create = () => {
                 name="height"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                required
               />
               {errors.height && <p>{errors.height}</p>}
             </div>
@@ -165,6 +190,7 @@ const Create = () => {
                 name="weight"
                 onChange={handleChange}
                 onBlur={handleBlur}
+                required
               />
               {errors.weight && <p>{errors.weight}</p>}
             </div>

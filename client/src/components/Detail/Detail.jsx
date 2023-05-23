@@ -21,10 +21,10 @@ const Detail = () => {
     return setPokemon({});
   }, [id]);
 
-  console.log(pokemon.name);
+  console.log(pokemon);
 
   return (
-    <div className={style.background}>
+    <div>
     <div className={style.background}>
       <div className={style.container}>
         <img src={pokemon.image} alt={pokemon.name} className={style.image} />

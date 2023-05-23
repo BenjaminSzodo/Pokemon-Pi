@@ -10,9 +10,9 @@ export default function Nav() {
       <div className={style.center}>
         <SearchBar />
         <div>
-          <button className={style.button}>
-            <NavLink to={"/pokeCreate"}>Pokemon Creator</NavLink>
-          </button>
+            <NavLink to={"/pokeCreate"}>
+              <button className={style.button}>Pokemon Creator</button>
+              </NavLink>
         </div>
       </div>
     </div>

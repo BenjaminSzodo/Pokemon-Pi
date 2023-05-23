@@ -19,4 +19,4 @@ const postPokemon = async(pokemon) => {
     }
 }
 
-module.exports = {postPokemon}
+module.exports = {postPokemon};

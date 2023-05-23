@@ -14,4 +14,6 @@ const getPokemonByName = async (name) => {
   return null;
 };
 
-module.exports = { getPokemonByName };
+if (typeof window === "undefined") {
+  module.exports = { getPokemonByName };
+}
