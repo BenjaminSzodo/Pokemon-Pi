@@ -4,8 +4,8 @@ const getPokemonByName = async (name) => {
   let pokeTotal = await getAllPokemons();
   if (name) {
     console.log(name);
-    let pokemonName = pokeTotal.filter((p) =>
-      p.name.toLowerCase().includes(name.toLowerCase())
+    let pokemonName = pokeTotal.filter((pokemon) =>
+      pokemon.name.toLowerCase().includes(name.toLowerCase())
     );
     if (pokemonName.length > 0) {
       return pokemonName;

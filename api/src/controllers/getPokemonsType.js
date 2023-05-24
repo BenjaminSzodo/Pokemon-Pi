@@ -17,7 +17,7 @@ const getPokemonsType = async (req, res) => {
       }
       res.json(await Type.findAll());
     } catch (error) {
-      console.error(error);
+      
       res.status(500).json({ message: "Error retrieving types" });
     }
   };

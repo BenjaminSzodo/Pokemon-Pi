@@ -1,4 +1,5 @@
-const { Pokemon } = require("../db")
+const { Pokemon , Type } = require("../db")
+
 
 const postPokemon = async(pokemon) => {
     try {
@@ -13,6 +14,19 @@ const postPokemon = async(pokemon) => {
             height: pokemon.height,
             weight: pokemon.weight,
         });
+        console.log(pokemon.types);
+        await pokeCreated.addTypes(pokemon.types.split(','))
+        const aux = await Pokemon.findAll({
+            where:{
+                name: pokemon.name
+            },
+            include: {
+                model: Type,
+                attributes: ['name'],
+                through: {attributes: []}
+            }
+        })
+
         return pokeCreated
     } catch (error) {
         throw Error(error.message)

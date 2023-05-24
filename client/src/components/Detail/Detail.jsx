@@ -14,6 +14,7 @@ const Detail = () => {
     axios(`http://localhost:3001/pokemons/${id}`)
       .then(response => response.data)
       .then((data) => {
+        console.log(data);
         if (data[0].name) {
           setPokemon(data[0]);
         }

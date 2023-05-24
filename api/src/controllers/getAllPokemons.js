@@ -35,13 +35,32 @@ const objPokimon = (poke) => { // Con la informacion de los pokemons traída en 
 const getDataBasePokemon = async() => {
     
     try {
-        return await Pokemon.findAll({
-            includes : {
+        const pokeDb = await Pokemon.findAll({
+            include: {
                 model: Type,
                 attributes: ['name'],
-                through:{attributes : []}
+                through: {
+                    attributes: [],
+                },
             }
-        })
+    })
+    const pokeFormat= pokeDb.map((e,i) => {
+        return {
+        id: pokeDb[i]?.id,
+        name: pokeDb[i]?.name,
+        image: pokeDb[i]?.image,
+        hp: pokeDb[i]?.hp,
+        attack: pokeDb[i]?.attack,
+        defense: pokeDb[i]?.defense,
+        speed: pokeDb[i]?.speed,
+        height: pokeDb[i]?.height,
+        weight: pokeDb[i]?.weight,
+        createdInBd: true,
+        types: pokeDb[i]?.types.map(element => element.dataValues.name) 
+        }
+    })
+        console.log(pokeFormat);
+        return pokeFormat 
     } catch (error) {
         throw Error(error.message);
     }
@@ -59,3 +78,8 @@ const getAllPokemons = async() => {
 }
 
 module.exports= { getAllPokemons };
+
+
+//NOTAS
+//Promise.all() toma un array de promesas y devuelve una nueva promesa 
+//que se resuelve cuando todas las promesas del array se resuelven o se rechazan.
