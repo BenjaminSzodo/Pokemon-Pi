@@ -90,9 +90,9 @@ const reducer = (state = initialState, action) => {
                   filteredPokemons: orderAttk,
                 };
             case FILTER_TYPE:
-                const filteredPokemons = action.payload === 'allPokemons'
-                  ? state.allPokemons // Si el filtro es "allPokemons", muestra todos los Pokémon
-                  : state.allPokemons.filter(element => element.types?.includes(action.payload));
+              const filteredPokemons = action.payload === 'allPokemons'
+              ? state.allPokemons // Si el filtro es "allPokemons", muestra todos los Pokémon
+              : state.allPokemons.filter(element => element.types?.includes(action.payload));
               
                 return {
                   ...state,
