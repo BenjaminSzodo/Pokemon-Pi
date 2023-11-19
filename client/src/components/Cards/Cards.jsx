@@ -59,12 +59,16 @@ const Cards = () => {
             />
           ))}
       </div>
+      
+      {  filteredPokemons.length > pokemonsPerPage && (
       <Pagination
         pokemonsPerPage={pokemonsPerPage}
         allPokemons={pokemons.length}
         currentPage={currentPage}
         pagination={pagination}
       />
+        )}
+        
     </div>
   );
 };

@@ -60,6 +60,7 @@ router.get("/pokename", async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
 router.get('/poketypes', getPokemonsType)
 
 module.exports = router;
